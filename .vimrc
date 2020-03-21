@@ -1,4 +1,4 @@
-" vim:fdm=marker
+" vim:foldmethod=marker:foldlevel=0
 " Set compatibility to Vim only.
 set nocompatible
 filetype plugin indent on
@@ -39,6 +39,8 @@ let g:voom_tree_width = 40
 let g:voom_default_mode = 'markdown'
 "" }}}
 "" General Settings {{{
+
+set modelines=1 "allow modelines
 
 "more characters will be sent to the screen for redrawing
 set ttyfast
@@ -92,6 +94,8 @@ set hlsearch
 "searches are case insensitive unless they contain at least one capital letter
 set ignorecase
 set smartcase
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
 " keep cursor in middle of screen
 set scrolloff=999
@@ -103,6 +107,11 @@ set whichwrap+=<,>
 " |nojoinspaces| allows you to use SHIFT-J in normal mode to join the next line with the current line without adding unwanted spaces.
 setlocal nojoinspaces
 
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set expandtab       " tabs are spaces
+
+
 "" }}}
 "" Keybindings & Mappings {{{
 
@@ -111,11 +120,14 @@ setlocal nojoinspaces
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
+inoremap jk <esc>  "jk to escape
 
 " Let's make it easy to edit this file (mnemonic for the key sequence is 'e'dit 'v'imrc)
 nnoremap <leader>ev :e $MYVIMRC<cr>
 " And to source this file as well (mnemonic for the key sequence is 's'ource 'v'imrc)
 nnoremap <leader>sv :so $MYVIMRC<cr>
+" Goto zshrc
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
 
 "Toggle Goyo on/off
 nnoremap <leader>w :Goyo<CR>
@@ -151,13 +163,20 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor
-nnoremap <leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <leader>sg :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Ag exec command
 "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>A :Ag<Space>
+nnoremap <leader>sa :Ag<Space>
 
 " Toggle Voom
 nnoremap <localLeader>v :VoomToggle<CR>
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 "" }}}
 "" Functions {{{
@@ -251,3 +270,10 @@ endif
 autocmd VimEnter * call AirlineInit()
 
 ""}}}
+"" Backups {{{
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+"" }}}
