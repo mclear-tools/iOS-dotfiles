@@ -111,6 +111,17 @@ set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 
+" Netrw
+let g:netrw_liststyle = 3 " tree view
+let g:netrw_banner = 0 " no banner
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4 " open in window
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+          autocmd!
+          autocmd VimEnter * :Vexplore
+augroup END
 
 "" }}}
 "" Keybindings & Mappings {{{
