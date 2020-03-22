@@ -110,6 +110,13 @@ alias ls='ls --color -a'
 alias ld="ls -lht | grep '^d'"
 alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gs="git status"
+alias zs="source ~/.zshrc"
+
+# quick git
+function gmp() {
+          git commit -m "$1"
+          git push
+      }
 
 # List directory on cd
 function chpwd() { ls }
