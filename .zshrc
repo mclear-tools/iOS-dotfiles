@@ -71,7 +71,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git copyfile)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,12 +102,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # vim
 alias v="vim"
+alias ec="emacsclient"
 alias ex='exit'
 alias ll='ls --color -lAFh -a'
 alias lc="colorls -lA --sd"
 alias ls='ls --color -a'
 alias ld="ls -lht | grep '^d'"
 alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gs="git status"
 
 # List directory on cd
 function chpwd() { ls }
